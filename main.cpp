@@ -10,7 +10,10 @@ struct mstr {
 };
 
 int main() {
-    vector <mstr> tests = {
+    BigInteger a = BigInteger({1, 0, 4, 3, 2, 4, 0, 8}, false);
+    BigInteger b = BigInteger({6, 7, 4, 8, 9}, false);
+    cout << a % b;
+    /*vector <mstr> tests = {
             {
                     BigInteger({5, 4, 7, 8, 0, 1}, false),
                     BigInteger({8, 0, 4}, false),
@@ -125,7 +128,7 @@ int main() {
             cout << ">=\n";
         if ((test.a >= test.b) != test.more_or_equal)
             cout << "ERROR in more_or_equal\n";
-    }
+    }*/
 
     return 0;
 }

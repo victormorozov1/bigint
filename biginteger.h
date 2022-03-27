@@ -19,6 +19,14 @@ public:
                 vec.push_back(*i);
     }
 
+    void set_num(long long num){
+        vec.clear();
+        while (num){
+            vec.push_back(num % 10);
+            num /= 10;
+        }
+    }
+
     BigInteger ABS(){
         return BigInteger(vec, 0, false);
     }
@@ -175,6 +183,32 @@ public:
         res.negative = (negative + other.negative) % 2;
 
         return res;
+    }
+
+    BigInteger operator/(BigInteger& other) {
+        long long l = -999999; /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        long long r = 999999; //// Тут если увеличитьь число ломается деление
+
+        while (r - l > 1){
+            long long m = (l + r) / 2;
+            BigInteger mb = BigInteger({}, false);
+            mb.set_num(m);
+
+            if (mb * other <= *this)
+                l = m;
+            else
+                r = m;
+        }
+
+        BigInteger res = BigInteger({}, false);
+        res.set_num(l);
+        cout << l << endl;
+        return res;
+    }
+
+    BigInteger operator%(BigInteger& other) {
+        auto wtf = *this / other * other;
+        return *this - wtf;
     }
 };
 
